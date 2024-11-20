@@ -1,5 +1,4 @@
 'use client';
-// import Image from "next/image";
 import AddTodo from "./Components/AddTodo";
 import Todo from "./Components/Todo";
 import ClientProvider from "./ClientProvider";
