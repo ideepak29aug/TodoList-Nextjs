@@ -3,7 +3,7 @@ import Image from "next/image";
 import AddTodo from "./Components/AddTodo";
 import Todo from "./Components/Todo";
 import ClientProvider from "./ClientProvider";
-import favicon from '../../public/favicon.png'
+import logo from './assets/images/logo.png'
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <div className='w-screen h-screen bg-slate-700 flex justify-center items-start overflow-hidden'>
         <div className="max-w-5xl w-full py-8 flex flex-col justify-start items-center overflow-hidden">
           <div className="flex justify-center items-center gap-4">
-            <Image src={favicon} alt="" width={50} height={40} />
+            <Image src={logo} alt="" width={50} height={40} />
             <h1 className="text-white text-3xl"> TODO LIST</h1>
           </div>
           <AddTodo />
