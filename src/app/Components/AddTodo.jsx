@@ -29,8 +29,8 @@ const AddTodo = () => {
     } else {
       dispatch(addTodo(input.trim()));
     }
-    setInput(''); // Clear the input field
-    inputRef.current?.focus(); // Keep the focus on the input field after adding/updating a todo
+    setInput(''); 
+    inputRef.current?.focus(); 
   };
 
   return (
