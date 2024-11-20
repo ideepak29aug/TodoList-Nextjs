@@ -2,7 +2,7 @@
 
 import { React, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo, updateTodo, clearEditTodo } from '@/app/features/todo/TodoSlice';
+import { addTodo, updateTodo, clearEditTodo } from '../features/todo/TodoSlice';
 
 const AddTodo = () => {
   const [input, setInput] = useState('');
