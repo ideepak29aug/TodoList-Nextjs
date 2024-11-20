@@ -15,3 +15,6 @@ module.exports = {
   },
   plugins: [],
 };
+
+
+//now tailwind is working
