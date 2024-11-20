@@ -1,12 +1,12 @@
 'use client'
 import { React, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeTodo, setEditTodo, copytodo } from '../Features/Todo/TodoSlice';
+import { removeTodo, setEditTodo, copytodo } from '../features/todo/TodoSlice';
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaCopy } from "react-icons/fa";
 
 const Todo = () => {
     const todos = useSelector(state => state.todo.todos);
-    const textcopied = useSelector((state) => state.todo.textcopied);
+    // const textcopied = useSelector((state) => state.todo.textcopied);
     const dispatch = useDispatch();
 
     const [copied, setCopied] = useState(false);
@@ -32,15 +32,27 @@ const Todo = () => {
         }
     }, [currentItems, currentPage]);
 
-    // Show copied message for 2 seconds
+    const handleCopy = (todo) => {
+        navigator.clipboard.writeText(todo.text)
+            .then(() => {
+                console.log("Text copied to clipboard:", todo.text);
+                setCopied(true); // Update the `copied` state
+            })
+            .catch((err) => {
+                console.error("Failed to copy text:", err);
+            });
+    };
+    
     useEffect(() => {
-        if (textcopied) {
-            setCopied(true);
-            setTimeout(() => {
-                setCopied(false);
-            }, 2000); // Hide after 2 seconds
+        if (copied) {
+            const timer = setTimeout(() => {
+                setCopied(false); // Reset `copied` after 2 seconds
+            }, 2000);
+    
+            return () => clearTimeout(timer); // Cleanup timer on unmount
         }
-    }, [textcopied]);
+    }, [copied]); // Dependency on `copied`
+    
 
     return (
         <div className='w-full flex flex-col justify-center items-center'>
@@ -54,7 +66,7 @@ const Todo = () => {
                             <button 
                                 className='border-0 py-2 px-2 hover:text-blue-600 bg-blue-600 rounded hover:bg-zinc-800 duration-300' 
                                 title='Copy'
-                                onClick={() => dispatch(copytodo(todo))}
+                                onClick={() => handleCopy(todo)}
                             >
                                 <FaCopy />
                             </button>
@@ -95,7 +107,7 @@ const Todo = () => {
             </div>
 
             {/* Copied Alert */}
-            <div className={copied ? 'fixed bottom-4 right-8 py-1 px-3 bg-white rounded' : 'hidden'}>
+            <div className={`${copied ? 'right-8 ' : '-right-32'} transition-all duration-200 fixed bottom-4 py-1 px-3 bg-white rounded text-black`}>
                 Text copied!
             </div>
         </div>
