@@ -1,7 +1,7 @@
 'use client'
 import { React, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeTodo, setEditTodo, copytodo } from '../features/todo/TodoSlice';
+import { removeTodo, setEditTodo, copytodo } from '../../app/features/todo/TodoSlice';
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaCopy } from "react-icons/fa";
 
 const Todo = () => {
